@@ -57,7 +57,7 @@ class MyHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('First Route'),
+          title: Text('DsApp Menu'),
         ),
         body: Center(
             heightFactor: double.infinity,
@@ -141,19 +141,23 @@ Flex _buildButtonAjustes(BuildContext context, String label) {
     children: [
       SizedBox(
         width: 300,
-        child: RaisedButton(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        child: ElevatedButton(
+          style: ButtonStyle(
+            shape: MaterialStateProperty.all<OutlinedBorder>(
+                RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15))),
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.indigo),
+            padding: MaterialStateProperty.all<EdgeInsets>(
+                EdgeInsets.all(24.0)),
+          ),
           onPressed: () {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => MyAjustes()),
             );
           },
-          color: Colors.indigo,
-          textColor: Colors.white,
-          padding: EdgeInsets.all(24.0),
-          child: Text(label, style: TextStyle(fontSize: 30)),
+          child: Text(
+              label, style: TextStyle(fontSize: 30, color: Colors.white)),
         ),
       ),
       const SizedBox(height: 40),
