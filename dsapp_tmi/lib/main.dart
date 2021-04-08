@@ -1,8 +1,8 @@
-import 'Ajustes/ajustes.dart';
+import 'Menu/ajustes.dart';
+import 'Menu/tutorial.dart';
+import 'Menu/comenzar.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:dsapptmi/Comenzar/comenzar.dart';
-import 'package:dsapptmi/Tutorial/tutorial.dart';
 
 // **************************************************************************************************
 // **************************************************************************************************
