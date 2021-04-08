@@ -47,8 +47,11 @@ Conexión con la API de Google.
 
 ### Referencias:
 MediaPipe. Available at: https://google.github.io/mediapipe/ (Accessed: 11 March 2021)
+
 iPhone da la mano a los ciegos para cruzar la calle, 2011. Available at:
 https://actualidad.rt.com/ciencias/view/32820-iPhone-da-mano-a-ciegos-para-cruzar-calle (Accessed: 11 March 2021)
+
 Jiménez, R., 2017. Una aplicación para móviles ayuda a las personas ciegas a cruzar la calle. Available at:
 https://www.cordobahoy.es/articulo/la-ciudad/app-ayuda-personas-ciegas-cruzar-calle/20170420122628026338.html (Accessed: 12 March 2021)
+
 SeeLight: la app que ayuda a los ciegos a cruzar la calle, 2015. Available at: https://www.fundacionmontemadrid.es/2015/10/07/seelight-la-app-que-ayuda-a-los-ciegos-a-cruzar-la-calle/ (Accessed: 12 March 2021)
