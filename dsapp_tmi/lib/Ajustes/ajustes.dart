@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class MyAjustes extends StatefulWidget {
   MyAjustes({Key key, this.title}) : super(key: key);
@@ -10,9 +9,7 @@ class MyAjustes extends StatefulWidget {
   _MyAjustes createState() => _MyAjustes();
 }
 
-
 class _MyAjustes extends State<MyAjustes> {
-
   bool vibracion = false;
   bool popups = false;
   double currentSliderValue = 20;
@@ -29,15 +26,11 @@ class _MyAjustes extends State<MyAjustes> {
               mainAxisAlignment: MainAxisAlignment.center,
               direction: Axis.vertical,
               children: <Widget>[
-
                 _switchVibracion("Desactivar vibración"),
                 _switchPopups("Desactivar Pop-Ups"),
                 _sliderVolumen(),
-
               ],
-            )
-        )
-    );
+            )));
   }
 
   Widget _switchVibracion(String label) {
@@ -79,7 +72,6 @@ class _MyAjustes extends State<MyAjustes> {
           currentSliderValue = value;
         });
       },
-
     );
   }
 }

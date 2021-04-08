@@ -1,15 +1,18 @@
 import 'Ajustes/ajustes.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:dsapptmi/Comenzar/comenzar.dart';
 import 'package:dsapptmi/Tutorial/tutorial.dart';
+
+// **************************************************************************************************
+// **************************************************************************************************
+// **************************************************************************************************
 
 // Lista con las cámaras del sistema.
 List<CameraDescription> systemCameras;
 
 main() async {
-  //
+  // Para utilizar código asíncrono antes iniciar la aplicación.
   WidgetsFlutterBinding.ensureInitialized();
   try {
     /*
@@ -27,8 +30,27 @@ main() async {
     print('Error: $e.message');
   }
   // Cargamos la aplicación.
-  runApp(new MyHome());
+  runApp(new MyApp());
 }
+
+// **************************************************************************************************
+// **************************************************************************************************
+// **************************************************************************************************
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'DSAPP',
+      home: MyHome(),
+    );
+  }
+}
+
+// **************************************************************************************************
+// **************************************************************************************************
+// **************************************************************************************************
 
 class MyHome extends StatelessWidget {
   @override
@@ -54,8 +76,6 @@ class MyHome extends StatelessWidget {
 Flex _buildButtonComenzar(BuildContext context, String label) {
   return Flex(
     direction: Axis.vertical,
-
-    // mainAxisSize: MainAxisSize.min,
     children: [
       SizedBox(
         width: 300,
@@ -83,8 +103,6 @@ Flex _buildButtonComenzar(BuildContext context, String label) {
 Flex _buildButtonTutorial(BuildContext context, String label) {
   return Flex(
     direction: Axis.vertical,
-
-    // mainAxisSize: MainAxisSize.min,
     children: [
       SizedBox(
         width: 300,
@@ -112,8 +130,6 @@ Flex _buildButtonTutorial(BuildContext context, String label) {
 Flex _buildButtonAjustes(BuildContext context, String label) {
   return Flex(
     direction: Axis.vertical,
-
-    // mainAxisSize: MainAxisSize.min,
     children: [
       SizedBox(
         width: 300,
@@ -121,7 +137,6 @@ Flex _buildButtonAjustes(BuildContext context, String label) {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           onPressed: () {
-            //buscado = false;
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => MyAjustes()),
@@ -136,23 +151,4 @@ Flex _buildButtonAjustes(BuildContext context, String label) {
       const SizedBox(height: 40),
     ],
   );
-}
-
-class SecondRoute extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Second Routeadfghjklñ"),
-      ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Text('Go back!'),
-        ),
-      ),
-    );
-  }
 }

@@ -105,7 +105,7 @@ class _CameraState extends State<Camera> {
     return Container(
         color: Colors.black,
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 0.94,
+        height: MediaQuery.of(context).size.height * 0.92,
         child: CameraPreview(this.cameraController));
   }
 }

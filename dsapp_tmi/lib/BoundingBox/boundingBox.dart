@@ -1,31 +1,25 @@
 import 'package:flutter/material.dart';
 
 class BoundingBox extends StatelessWidget {
-  // Alto y ancho de la pantalla.
-  final double _screenH, _screenW;
   // Lista de elementos reconocidos en el frame de vídeo.
   final List<dynamic> _recognitions;
 
   // Crea una instancia con los valores recibidos.
-  BoundingBox(
-    this._recognitions,
-    this._screenH,
-    this._screenW,
-  );
+  BoundingBox(this._recognitions);
 
-  List<Widget> _calculateBoundingBoxes() {
+  List<Widget> _calculateBoundingBoxes(double screenH, double screenW) {
     /* 
-    Aplicamos una función map a cada elemento "re" de los objetos que han sido 
-    reconocidos ("_recognitions").
+    Mapeamos cada elemento "re" de los objetos que han sido reconocidos 
+    ("_recognitions") por una función anónima que calculará cada Bounding Box.
     */
     return _recognitions.map((re) {
       // Positioned es un elemento que permite indicar donde se ubica su hijo.
       return Positioned(
         // Ubicación y dimiensiones del objeto hijo.
-        left: re["rect"]["x"] * _screenW,
-        top: re["rect"]["y"] * _screenH,
-        width: re["rect"]["w"] * _screenW,
-        height: re["rect"]["h"] * _screenH,
+        left: re["rect"]["x"] * screenW,
+        top: re["rect"]["y"] * screenH,
+        width: re["rect"]["w"] * screenW,
+        height: re["rect"]["h"] * screenH,
         // Contenedor que enmarca al objeto detectado.
         child: Container(
           // Margen para el contenido interno.
@@ -56,7 +50,13 @@ class BoundingBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Devolvemos todos las Bunding Boxes (Marcos que envuelven a las imágenes).
-    return Stack(children: _calculateBoundingBoxes());
+    // Devolvemos todos los Bunding Boxes (Marcos que envuelven a las imágenes).
+    return Stack(
+        // Los hijos de esta pila son los Bounding Boxes.
+        children: _calculateBoundingBoxes(
+            // Alto de la pantalla.
+            MediaQuery.of(context).size.height * 0.92,
+            // Ancho de la pantalla.
+            MediaQuery.of(context).size.width));
   }
 }
