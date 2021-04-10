@@ -12,10 +12,12 @@ dependencies:
   mime: ^0.9.7
   flutter: 
     sdk: flutter
+  camera: ^0.8.1
 dev_dependencies: 
   flutter_test: 
     sdk: flutter
 flutter: 
   assets: 
-    - assets/credentials.json
+    - assets/maenvision.json
+    - assets/maenstorage.json
   uses-material-design: true

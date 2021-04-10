@@ -1,19 +1,32 @@
-
 import 'package:flutter/services.dart';
 import 'package:googleapis/vision/v1.dart';
 import 'package:googleapis_auth/auth_io.dart';
+import 'package:gcloud/storage.dart';
 
 class CredentialsProvider {
   CredentialsProvider();
 
-  Future<ServiceAccountCredentials> get _credentials async {
-    String _file = await rootBundle.loadString('assets/maenvision.json');
-    return ServiceAccountCredentials.fromJson(_file);
+  Future<ServiceAccountCredentials> get _credentialsvision async {
+    String _filevision = await rootBundle.loadString('assets/maenstorage.json');
+    return ServiceAccountCredentials.fromJson(_filevision);
   }
 
-  Future<AutoRefreshingAuthClient> get client async {
+  Future<ServiceAccountCredentials> get credentialsstorage async {
+    String _filestorage =
+        await rootBundle.loadString('assets/maenstorage.json');
+    return ServiceAccountCredentials.fromJson(_filestorage);
+  }
+
+  Future<AutoRefreshingAuthClient> get clientvision async {
     AutoRefreshingAuthClient _client = await clientViaServiceAccount(
-        await _credentials, [VisionApi.CloudVisionScope]).then((c) => c);
+        await _credentialsvision, [VisionApi.CloudVisionScope]).then((c) => c);
+    return _client;
+  }
+
+  Future<AutoRefreshingAuthClient> get clientstorage async {
+    AutoRefreshingAuthClient _client =
+        await clientViaServiceAccount(await _credentialsstorage, Storage.SCOPES)
+            .then((c) => c);
     return _client;
   }
 }
