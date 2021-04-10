@@ -11,7 +11,7 @@ class CredentialsProvider {
     return ServiceAccountCredentials.fromJson(_filevision);
   }
 
-  Future<ServiceAccountCredentials> get credentialsstorage async {
+  Future<ServiceAccountCredentials> get _credentialsstorage async {
     String _filestorage =
         await rootBundle.loadString('assets/maenstorage.json');
     return ServiceAccountCredentials.fromJson(_filestorage);

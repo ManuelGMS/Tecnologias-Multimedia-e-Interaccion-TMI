@@ -42,12 +42,16 @@ class _MyHomePageState extends State<MyHomePage> {
   final picker = ImagePicker();
   CloudStorage apiStorage;
   CloudOCR apiOcr;
+  String lastOCR;
   bool isUploaded = false;
   bool loading = false;
 
   @override
   void initState() {
     super.initState();
+    lastOCR = "";
+    apiStorage = CloudStorage();
+    apiOcr = CloudOCR();
     // rootBundle.loadString('assets/maenstorage.json').then((json) {
     //   apiStorage = CloudStorage(json);
     // });
@@ -89,8 +93,11 @@ class _MyHomePageState extends State<MyHomePage> {
       loading = true;
     });
 
-    final response = await apiStorage.save(_imageName, _imageBytes);
-    print(response.downloadLink);
+    print("Empiesa el oscar");
+    final response = await apiOcr.ocr(_imageB52);
+    print(response);
+
+    lastOCR = response;
 
     setState(() {
       loading = false;
@@ -131,15 +138,16 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: FlatButton(
                               color: Colors.blueAccent,
                               textColor: Colors.white,
-                              onPressed: _saveImage,
-                              child: Text('Save to cloud'),
-                            ),
-                          )
+                              //onPressed: _saveImage,
+                              onPressed: _processImage,
+                              //child: Text('Save to cloud'),
+                              child: Text('OCR golf day'),
+                            ))
                   ],
                 )),
       floatingActionButton: FloatingActionButton(
         onPressed: _getImage,
-        tooltip: 'Select image',
+        tooltip: 'Haga uste foto xfabor',
         child: Icon(Icons.add_a_photo),
       ),
     );
