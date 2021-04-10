@@ -123,7 +123,17 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     isUploaded
                         ? Center(
-                            child: CircleAvatar(
+                            child: new Column(children: [
+                            new Padding(padding: EdgeInsets.only(top: 50.0)),
+                            new Text(
+                              lastOCR,
+                              style: new TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 25.0,
+                                  backgroundColor: Colors.black),
+                            ),
+                            new Padding(padding: EdgeInsets.only(top: 50.0)),
+                            new CircleAvatar(
                               radius: 40,
                               backgroundColor: Colors.green,
                               child: Icon(
@@ -132,7 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 size: 60,
                               ),
                             ),
-                          )
+                          ]))
                         : Align(
                             alignment: Alignment.bottomCenter,
                             child: FlatButton(
