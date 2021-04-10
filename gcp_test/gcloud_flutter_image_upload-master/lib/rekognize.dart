@@ -5,7 +5,7 @@ class RekognizeProvider {
   var _client = CredentialsProvider().client;
 
   // La imagen debe estar en base 64
-  Future<WebLabel> search(String image) async {
+  Future<String> /*Future<WebLabel>*/ search(String image) async {
     var _vision = VisionApi(await _client);
     var _api = _vision.images;
     var _response = await _api.annotate(BatchAnnotateImagesRequest.fromJson({
@@ -19,12 +19,18 @@ class RekognizeProvider {
       ]
     }));
 
+  /*
     WebLabel _bestGuessLabel;
     _response.responses.forEach((data) {
       var _label = data.webDetection.bestGuessLabels;
       _bestGuessLabel = _label.single;
     });
 
-    return _bestGuessLabel;
+    return _bestGuessLabel;*/
+
+    String ret;
+    ret = _response.responses.first.textAnnotations.first.description;
+
+    return ret;
   }
 }
