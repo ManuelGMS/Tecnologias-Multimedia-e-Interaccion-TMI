@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:image/image.dart' as img;
 
 import 'storage.dart';
 import 'rekognize.dart';
@@ -38,6 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
   File _image;
   Uint8List _imageBytes;
   String _imageName;
+  img.Image _smallImage;
   String _imageB52;
   final picker = ImagePicker();
   CloudStorage apiStorage;
@@ -66,8 +68,13 @@ class _MyHomePageState extends State<MyHomePage> {
         print(pickedFile.path);
         _image = File(pickedFile.path);
         _imageBytes = _image.readAsBytesSync();
+
+        //  Ahora vamos a reescalar la imagen para que pese menos y la red no sufra
+        _smallImage = img.decodeImage(_imageBytes);
+        _smallImage = img.copyResize(_smallImage, width: 200);
+
         _imageName = _image.path.split('/').last;
-        _imageB52 = base64Encode(_imageBytes);
+        _imageB52 = base64Encode(img.encodeJpg(_smallImage));
         isUploaded = false;
       } else {
         print('No image selected.');
@@ -95,6 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     print("Empiesa el oscar");
     final response = await apiOcr.ocr(_imageB52);
+
     print(response);
 
     lastOCR = response;
