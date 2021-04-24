@@ -16,6 +16,7 @@ class MyComenzar extends StatefulWidget {
 class _MyComenzar extends State<MyComenzar> {
   // Lista de elementos reconocidos en el frame de vídeo.
   List<dynamic> _recognitions;
+  //Camera cam;
 
   @override
   void initState() {
@@ -45,6 +46,11 @@ class _MyComenzar extends State<MyComenzar> {
 
   @override
   Widget build(BuildContext context) {
+    /* Pasamos un CallBack a la cámara para que podamos recuperar a
+      través de el la lista de Bounding Boxes. */
+    Camera cam; // = Camera(this.widget._systemCamera, _recognitionsCB);
+    // peta
+
     return Scaffold(
         appBar: AppBar(
           title: Text('Comenzar'),
@@ -56,15 +62,8 @@ class _MyComenzar extends State<MyComenzar> {
               child: Stack(
             children: [
               // Muestra lo que devuelve su método "build" (el vídeo grabado).
-              Camera(
-                // Obtiene la cámara a través del widget asociado este estado.
-                this.widget._systemCamera,
-                /*
-                Pasamos un CallBack a la cámara para que podamos recuperar a
-                través de el la lista de Bounding Boxes.
-                */
-                _recognitionsCB,
-              ),
+              // Obtiene la cámara a través del widget asociado este estado.
+              cam = Camera(this.widget._systemCamera, _recognitionsCB),
               Align(
                 alignment: Alignment.bottomCenter,
                 child: FloatingActionButton(
@@ -72,8 +71,9 @@ class _MyComenzar extends State<MyComenzar> {
                       Icon(Icons.chrome_reader_mode), // Buscar un icono mejor
                   tooltip: 'OCR',
                   // hay que modificar la camarapara que haga fotos
-                  onPressed:
-                      () async {} /*_hacerFoto () async {
+                  onPressed: () async {
+                    cam.getBase64;
+                  } /*_hacerFoto () async {
                   final path = join((await getTemporaryDirectory()).path, '${DateTime.now()}.png');
                   await controller.takePicture(path).then((res) => {
                     setState(() {
@@ -84,8 +84,6 @@ class _MyComenzar extends State<MyComenzar> {
                   ,
                 ),
               ),
-
-              //********** OJAL OJAL
 
               /*
               Muestra lo que devuelve su método "build" (los boundding boxes).

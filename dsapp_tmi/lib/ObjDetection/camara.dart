@@ -1,6 +1,9 @@
 import 'package:camera/camera.dart';
 import 'package:tflite/tflite.dart';
 import 'package:flutter/material.dart';
+import 'package:dsapptmi/OCR/processImage.dart';
+import 'package:image/image.dart' as imgLib;
+import 'dart:convert';
 
 /*
 Definimos un CallBack (una función que puede ser recibida
@@ -14,15 +17,45 @@ class Camera extends StatefulWidget {
   // Objeto que representa la cámara de vídeo del sistema.
   final CameraDescription _systemCamera;
   Camera(this._systemCamera, this._recognitionsCB);
-  @override
-  _CameraState createState() => new _CameraState();
 
-  // Aqui hay que meter una funcion que haga una foto y devuelva un base 64
+  final _CameraState camSt = null;
+
+  // String en base64 con el frame acual JODER QUE PUTA BASURA DE LENGUAJE DE MIERDA COÑO COMO SE HACE ESTO
+  // Bueno parece que ya lo he hecho pero sigue siendo una puta mierda de mierda de puta mierda
+  Future<String> get getBase64 async {
+    String b52 = "";
+
+    if (camSt == null) return b52;
+
+    // Redimensionar la imagen porque google tambien es una mierda
+    imgLib.Image fotoPequenia = convertYUV420(camSt.frame);
+    imgLib.copyResize(fotoPequenia, width: 300);
+
+    // Fluter es una mierda y hace las fotos mal
+    List<int> fotoMenosMal = await convertImagetoPng(fotoPequenia);
+
+    // Pasar a base 64... tanto alto nivel y tanta mierda pa nada
+    b52 = base64Encode(fotoMenosMal);
+
+    return b52;
+  }
+
+  @override
+  _CameraState createState() {
+    _CameraState camSt = new _CameraState();
+    return camSt;
+  }
+  //_CameraState createState() => new _CameraState();
 }
 
 class _CameraState extends State<Camera> {
   // Objeto para controlar la cámara del sistema.
   CameraController cameraController;
+
+  CameraImage frame;
+  //frame.toString();
+  CameraImage get getFrame => this.frame;
+
   // Booleano para controlar si actualmente hemos detectado algo en el vídeo.
   bool _ssdMobileNetIsNotWorking = false;
 
@@ -37,7 +70,7 @@ class _CameraState extends State<Camera> {
     // Instanciamos un objeto para controlar la cámara de vídeo.
     this.cameraController = new CameraController(
       this.widget._systemCamera,
-      ResolutionPreset.high,
+      ResolutionPreset.medium,
     );
 
     // Inicializa la cámara de vídeo y permite indicar a esta que debe de hacer.
@@ -52,6 +85,8 @@ class _CameraState extends State<Camera> {
         analizar el frame de vídeo actual.
         */
         if (!_ssdMobileNetIsNotWorking) {
+          // Actualizar el atributo del frame
+          this.frame = currentFrame;
           // Indicamos que la red neuronal está analizando y no se admiten frames.
           _ssdMobileNetIsNotWorking = true;
           // Indicamos a TensorFlow que trate de detectar un objeto en la imagen.
