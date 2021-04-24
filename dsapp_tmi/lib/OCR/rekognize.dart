@@ -1,4 +1,4 @@
-import 'credentials.dart';
+import 'package:dsapptmi/Cloud/credentials.dart';
 import 'package:googleapis/vision/v1.dart';
 
 class CloudOCR {

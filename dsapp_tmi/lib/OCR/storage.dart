@@ -1,10 +1,10 @@
 import 'dart:typed_data';
 
-import 'package:googleapis_auth/auth_io.dart' as auth;
+//import 'package:googleapis_auth/auth_io.dart' as auth;
 import 'package:gcloud/storage.dart';
 import 'package:mime/mime.dart';
 
-import 'credentials.dart';
+import 'package:dsapptmi/Cloud/credentials.dart';
 
 class CloudStorage {
   // Cliente

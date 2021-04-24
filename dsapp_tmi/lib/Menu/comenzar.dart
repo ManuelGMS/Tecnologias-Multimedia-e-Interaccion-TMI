@@ -65,22 +65,26 @@ class _MyComenzar extends State<MyComenzar> {
                 */
                 _recognitionsCB,
               ),
-
-              //************ OJAL OJAL ver https://codesundar.com/flutter-camera-example/
-              floatingActionButton: FloatingActionButton(
-                child: Icon(Icons.camera), // Buscar un icono mejor
-                tooltip: 'OCR',
-                // hay que modificar la camarapara que haga fotos
-                onPressed: _hacerFoto/*() async {
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: FloatingActionButton(
+                  child:
+                      Icon(Icons.chrome_reader_mode), // Buscar un icono mejor
+                  tooltip: 'OCR',
+                  // hay que modificar la camarapara que haga fotos
+                  onPressed:
+                      () async {} /*_hacerFoto () async {
                   final path = join((await getTemporaryDirectory()).path, '${DateTime.now()}.png');
                   await controller.takePicture(path).then((res) => {
                     setState(() {
                         _url = path;
                     })
                   });
-              }*/,
+              }*/
+                  ,
+                ),
               ),
-              floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+
               //********** OJAL OJAL
 
               /*
@@ -92,16 +96,17 @@ class _MyComenzar extends State<MyComenzar> {
               */
               BoundingBox(_recognitions == null ? [] : _recognitions)
             ],
-        ))/*, // Metodo segun el chisme antiguo
+          )) /*, // Metodo segun el chisme antiguo
         Align(
-            alignment: Alignment.bottomCenter,
-            child: FlatButton(
-              color: Colors.blueAccent,
-              textColor: Colors.white,
-              //onPressed: _saveImage,
-              onPressed: _processImage,
-              child: Text('OCR golf day'),
-          ))*/
+          alignment: Alignment.bottomCenter,
+          child: FlatButton(
+            color: Colors.blueAccent,
+            textColor: Colors.white,
+            //onPressed: _saveImage,
+            onPressed: _processImage,
+            child: Text('OCR golf day'),
+          )
+        )*/
         ]));
   }
 }

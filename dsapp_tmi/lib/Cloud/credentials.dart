@@ -3,6 +3,9 @@ import 'package:googleapis/vision/v1.dart';
 import 'package:googleapis_auth/auth_io.dart';
 import 'package:gcloud/storage.dart';
 
+/**
+ * Clase para obtener los creedenciales de acceso a la APIcan los mosquitos
+ */
 class CredentialsProvider {
   CredentialsProvider();
 
