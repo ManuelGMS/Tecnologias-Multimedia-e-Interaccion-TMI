@@ -18,21 +18,24 @@ class Camera extends StatefulWidget {
   final CameraDescription _systemCamera;
   Camera(this._systemCamera, this._recognitionsCB);
 
-  final _CameraState camSt = null;
+  _CameraState camSt;
 
   // String en base64 con el frame acual JODER QUE PUTA BASURA DE LENGUAJE DE MIERDA COÑO COMO SE HACE ESTO
   // Bueno parece que ya lo he hecho pero sigue siendo una puta mierda de mierda de puta mierda
-  Future<String> get getBase64 async {
+  String get getBase64 {
     String b52 = "";
 
-    if (camSt == null) return b52;
+    if (camSt == null) {
+      print("ERROR CON EL FRAME");
+      return b52;
+    }
 
     // Redimensionar la imagen porque google tambien es una mierda
     imgLib.Image fotoPequenia = convertYUV420(camSt.frame);
     imgLib.copyResize(fotoPequenia, width: 300);
 
     // Fluter es una mierda y hace las fotos mal
-    List<int> fotoMenosMal = await convertImagetoPng(fotoPequenia);
+    List<int> fotoMenosMal = convertImagetoPng(fotoPequenia);
 
     // Pasar a base 64... tanto alto nivel y tanta mierda pa nada
     b52 = base64Encode(fotoMenosMal);
@@ -42,7 +45,7 @@ class Camera extends StatefulWidget {
 
   @override
   _CameraState createState() {
-    _CameraState camSt = new _CameraState();
+    camSt = new _CameraState();
     return camSt;
   }
   //_CameraState createState() => new _CameraState();

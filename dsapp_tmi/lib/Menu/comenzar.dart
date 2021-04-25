@@ -3,6 +3,7 @@ import 'package:tflite/tflite.dart';
 import 'package:flutter/material.dart';
 import 'package:dsapptmi/ObjDetection/camara.dart';
 import 'package:dsapptmi/ObjDetection/boundingBox.dart';
+import 'package:dsapptmi/OCR/rekognize.dart';
 
 class MyComenzar extends StatefulWidget {
   // Cámara de video.
@@ -16,7 +17,7 @@ class MyComenzar extends StatefulWidget {
 class _MyComenzar extends State<MyComenzar> {
   // Lista de elementos reconocidos en el frame de vídeo.
   List<dynamic> _recognitions;
-  //Camera cam;
+  CloudOCR apiOcr;
 
   @override
   void initState() {
@@ -25,6 +26,9 @@ class _MyComenzar extends State<MyComenzar> {
     el arbol de widgets que componen la interfaz de usuario.
     */
     super.initState();
+
+    // Arranca la conexion con el gogle on the line de la nube
+    apiOcr = CloudOCR();
 
     // Carga el modelo de red neuronal y las etiquetas de cada clase.
     Tflite.loadModel(
@@ -67,22 +71,20 @@ class _MyComenzar extends State<MyComenzar> {
               Align(
                 alignment: Alignment.bottomCenter,
                 child: FloatingActionButton(
-                  child:
-                      Icon(Icons.chrome_reader_mode), // Buscar un icono mejor
-                  tooltip: 'OCR',
-                  // hay que modificar la camarapara que haga fotos
-                  onPressed: () async {
-                    cam.getBase64;
-                  } /*_hacerFoto () async {
-                  final path = join((await getTemporaryDirectory()).path, '${DateTime.now()}.png');
-                  await controller.takePicture(path).then((res) => {
-                    setState(() {
-                        _url = path;
-                    })
-                  });
-              }*/
-                  ,
-                ),
+                    child:
+                        Icon(Icons.chrome_reader_mode), // Buscar un icono mejor
+                    tooltip: 'OCR',
+                    // hay que modificar la camarapara que haga fotos
+                    onPressed: () async {
+                      print("pulsaoo");
+                      // Para procesar la dichosa fotito
+                      String b52 = cam.getBase64;
+                      if (b52 != "") {
+                        Future<String> response = apiOcr.ocr(b52);
+                        print("OSCARRRRRRRRRRRRRRRRRRRR");
+                        //print(response);
+                      }
+                    }),
               ),
 
               /*

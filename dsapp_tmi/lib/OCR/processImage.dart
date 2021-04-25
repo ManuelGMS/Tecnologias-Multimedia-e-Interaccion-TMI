@@ -23,7 +23,7 @@ Future<List<int>> convertCameraImagetoPng(CameraImage image) async {
   return null;
 }
 
-Future<List<int>> convertImagetoPng(imglib.Image img) async {
+List<int> convertImagetoPng(imglib.Image img) {
   try {
     imglib.PngEncoder pngEncoder = new imglib.PngEncoder();
 
