@@ -2,9 +2,6 @@ import 'dart:io';
 import 'dart:async';
 import 'dart:convert' show json, utf8;
 
-import 'package:dsapptmi/TextToSpeech/voz.dart';
-
-
 class TextToSpeechAPI {
 
   static final TextToSpeechAPI _singleton = TextToSpeechAPI._internal();
@@ -19,7 +16,7 @@ class TextToSpeechAPI {
 
   TextToSpeechAPI._internal();
 
-  Future<dynamic> synthesizeText(String text, String name, String languageCode,String ssmlGender) async {
+  Future<dynamic> synthesizeText(String text) async {
     try {
       final uri = Uri.https(_apiURL, '/v1beta1/text:synthesize');
       final Map json = {
@@ -27,9 +24,9 @@ class TextToSpeechAPI {
           'text': text
         },
         'voice': {
-          'name': name,
-          'languageCode': languageCode,
-          'ssmlGender': ssmlGender
+          'name': 'es-ES-Wavenet-C',
+          'languageCode': 'es-ES',
+          'ssmlGender': 'FEMALE'
         },
         'audioConfig': {
           'audioEncoding': 'MP3'
@@ -46,46 +43,11 @@ class TextToSpeechAPI {
     }
   }
 
-  Future<List<Voz>> getVoices() async {
-    try {
-      final uri = Uri.https(_apiURL, '/v1beta1/voices');
-
-      final jsonResponse = await _getJson(uri);
-      if (jsonResponse == null) {
-        return null;
-      }
-
-      final List<dynamic> voicesJSON = jsonResponse['voices'].toList();
-
-      if (voicesJSON == null) {
-        return null;
-      }
-
-      final voices = Voz.mapJSONStringToList(voicesJSON);
-      return voices;
-    } on Exception catch(e) {
-      print("$e");
-      return null;
-    }
-
-  }
-
   Future<Map<String, dynamic>> _postJson(Uri uri, Map jsonMap) async {
     try {
       final httpRequest = await _httpClient.postUrl(uri);
       final jsonData = utf8.encode(json.encode(jsonMap));
       final jsonResponse = await _processRequestIntoJsonResponse(httpRequest, jsonData);
-      return jsonResponse;
-    } on Exception catch(e) {
-      print("$e");
-      return null;
-    }
-  }
-
-  Future<Map<String, dynamic>> _getJson(Uri uri) async {
-    try {
-      final httpRequest = await _httpClient.getUrl(uri);
-      final jsonResponse = await _processRequestIntoJsonResponse(httpRequest, null);
       return jsonResponse;
     } on Exception catch(e) {
       print("$e");
