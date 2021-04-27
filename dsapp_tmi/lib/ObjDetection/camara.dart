@@ -16,6 +16,8 @@ class Camera extends StatefulWidget {
   Camera(this._systemCamera, this._recognitionsCB);
   @override
   _CameraState createState() => new _CameraState();
+
+  // Aqui hay que meter una funcion que haga una foto y devuelva un base 64
 }
 
 class _CameraState extends State<Camera> {
@@ -26,7 +28,7 @@ class _CameraState extends State<Camera> {
 
   @override
   void initState() {
-    /* 
+    /*
     El estado de un widget se inicializa cuando el widget se inserta en
     el arbol de widgets que componen la interfaz de usuario.
     */
@@ -41,12 +43,12 @@ class _CameraState extends State<Camera> {
     // Inicializa la cámara de vídeo y permite indicar a esta que debe de hacer.
     this.cameraController.initialize().then((_) {
       /*
-      Indica a la cámara que comience un streaming (captura CONTINUAMENTE 
+      Indica a la cámara que comience un streaming (captura CONTINUAMENTE
       el vídeo en tiempo real frame a frame).
       */
       this.cameraController.startImageStream((CameraImage currentFrame) {
-        /* 
-        Si la red neuronal no está clasificando nada, entonces podemos 
+        /*
+        Si la red neuronal no está clasificando nada, entonces podemos
         analizar el frame de vídeo actual.
         */
         if (!_ssdMobileNetIsNotWorking) {
@@ -67,7 +69,7 @@ class _CameraState extends State<Camera> {
             // Llegamos aquí cuando "SSD MobileNet" ha realizado su clasificación.
             // Indicamos que la red neuronal ya puede volver a clasificar un frame.
             this._ssdMobileNetIsNotWorking = false;
-            /* 
+            /*
             Invocamos a la función CallBack para devolver una lista con las
             imágenes detectadas y el tamaño de todo el frame capturado.
             */
@@ -89,14 +91,14 @@ class _CameraState extends State<Camera> {
 
   @override
   Widget build(BuildContext context) {
-    /* 
-    Si el objeto que manipula la cámara no está instanciado, devolvemos como 
+    /*
+    Si el objeto que manipula la cámara no está instanciado, devolvemos como
     imagen un lienzo negro.
     */
     if (this.cameraController == null) Container(color: Colors.black);
 
     /*
-    Si la cámara que manipula el objeto no se ha inicializado, devolvemos como 
+    Si la cámara que manipula el objeto no se ha inicializado, devolvemos como
     imagen un lienzo negro.
     */
     if (!this.cameraController.value.isInitialized)

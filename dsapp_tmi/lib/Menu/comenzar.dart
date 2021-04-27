@@ -19,7 +19,7 @@ class _MyComenzar extends State<MyComenzar> {
 
   @override
   void initState() {
-    /* 
+    /*
     El estado de un widget se inicializa cuando el widget se inserta en
     el arbol de widgets que componen la interfaz de usuario.
     */
@@ -34,7 +34,7 @@ class _MyComenzar extends State<MyComenzar> {
   // Método para actualizar la pantalla y los datos asociados a los objetos reconocidos.
   _recognitionsCB(List<dynamic> recognitions) {
     /*
-    La llamada a setState le dice al framework Flutter que algo ha cambiado en 
+    La llamada a setState le dice al framework Flutter que algo ha cambiado en
     este State, lo que hace que se vuelva a ejecutar el método build, de esta
     forma la pantalla se redibujará para reflejar los cambios.
     */
@@ -59,12 +59,34 @@ class _MyComenzar extends State<MyComenzar> {
               Camera(
                 // Obtiene la cámara a través del widget asociado este estado.
                 this.widget._systemCamera,
-                /* 
+                /*
                 Pasamos un CallBack a la cámara para que podamos recuperar a
-                través de el la lista de Bounding Boxes. 
+                través de el la lista de Bounding Boxes.
                 */
                 _recognitionsCB,
               ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: FloatingActionButton(
+                  child:
+                      Icon(Icons.chrome_reader_mode), // Buscar un icono mejor
+                  tooltip: 'OCR',
+                  // hay que modificar la camarapara que haga fotos
+                  onPressed:
+                      () async {} /*_hacerFoto () async {
+                  final path = join((await getTemporaryDirectory()).path, '${DateTime.now()}.png');
+                  await controller.takePicture(path).then((res) => {
+                    setState(() {
+                        _url = path;
+                    })
+                  });
+              }*/
+                  ,
+                ),
+              ),
+
+              //********** OJAL OJAL
+
               /*
               Muestra lo que devuelve su método "build" (los boundding boxes).
 
@@ -74,7 +96,17 @@ class _MyComenzar extends State<MyComenzar> {
               */
               BoundingBox(_recognitions == null ? [] : _recognitions)
             ],
-          ))
+          )) /*, // Metodo segun el chisme antiguo
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: FlatButton(
+            color: Colors.blueAccent,
+            textColor: Colors.white,
+            //onPressed: _saveImage,
+            onPressed: _processImage,
+            child: Text('OCR golf day'),
+          )
+        )*/
         ]));
   }
 }
