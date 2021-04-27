@@ -7,7 +7,7 @@ airplane
 bus
 train
 truck
-boat
+???
 traffic light
 ???
 ???
@@ -42,7 +42,7 @@ kite
 skateboard
 surfboard
 tennis racket
-??
+???
 ???
 wine glass
 cup
