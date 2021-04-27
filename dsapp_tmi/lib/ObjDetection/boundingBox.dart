@@ -55,7 +55,6 @@ class BoundingBox extends StatelessWidget {
                   decoration: BoxDecoration(
                 // Estilo de todo el borde de la caja (color y anchura).
                 border: Border.all(
-                  color: Color.fromRGBO(255, 255, 255, 0.0),
                   width: 0.0,
                 ),
               )));
