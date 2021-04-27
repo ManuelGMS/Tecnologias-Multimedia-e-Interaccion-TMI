@@ -11,6 +11,14 @@ como parámetro de alguna función de este módulo).
 */
 typedef void Callback(List<dynamic> list);
 
+CameraImage frameG;
+
+// OJO que puede ser necesario un getset
+CameraImage get getFrameG => frameG;
+void setFrameG(CameraImage fre) {
+  frameG = fre;
+}
+
 class Camera extends StatefulWidget {
   // CallBack para dar deedback sobre las capturas y el tamaño de los frames.
   final Callback _recognitionsCB;
@@ -25,13 +33,17 @@ class Camera extends StatefulWidget {
   String get getBase64 {
     String b52 = "";
 
+    CameraImage frameL;
+
     if (camSt == null) {
-      print("ERROR CON EL FRAME");
-      return b52;
+      print("ERROR CON EL camSt pero no pasa nada, enrique genio 2 dias");
+      frameL = camSt.frame;
+    } else {
+      frameL = frameG;
     }
 
     // Redimensionar la imagen porque google tambien es una mierda
-    imgLib.Image fotoPequenia = convertYUV420(camSt.frame);
+    imgLib.Image fotoPequenia = convertYUV420(frameL);
     imgLib.copyResize(fotoPequenia, width: 300);
 
     // Fluter es una mierda y hace las fotos mal
@@ -89,7 +101,8 @@ class _CameraState extends State<Camera> {
         */
         if (!_ssdMobileNetIsNotWorking) {
           // Actualizar el atributo del frame
-          this.frame = currentFrame;
+          //this.frame = currentFrame; // vestigios
+          frameG = currentFrame;
           // Indicamos que la red neuronal está analizando y no se admiten frames.
           _ssdMobileNetIsNotWorking = true;
           // Indicamos a TensorFlow que trate de detectar un objeto en la imagen.
