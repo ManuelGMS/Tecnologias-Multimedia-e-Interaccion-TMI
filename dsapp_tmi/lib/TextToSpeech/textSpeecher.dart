@@ -1,12 +1,14 @@
 import 'dart:io';
 import 'dart:async';
 import 'dart:convert' show json, utf8;
+import 'package:dsapptmi/Cloud/credentials.dart';
 
 class TextToSpeechAPI {
 
+
   static final TextToSpeechAPI _singleton = TextToSpeechAPI._internal();
   final _httpClient = HttpClient();
-  static const _apiKey = "YOUR_API_KEY";
+  static const _apiKey = "";
   static const _apiURL = "texttospeech.googleapis.com";
 
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:dsapptmi/TextToSpeech/textSpeecher.dart';
 
 class MyAjustes extends StatefulWidget {
   MyAjustes({Key key, this.title}) : super(key: key);
@@ -29,6 +30,7 @@ class _MyAjustes extends State<MyAjustes> {
                 _switchVibracion("Desactivar vibración"),
                 _switchPopups("Desactivar Pop-Ups"),
                 _sliderVolumen(),
+                TextToSpeech("Preuba TTS"),
               ],
             )));
   }
@@ -55,6 +57,18 @@ class _MyAjustes extends State<MyAjustes> {
         setState(() {
           popups = value;
         });
+        //print(value);
+      },
+      secondary: const Icon(Icons.lightbulb_outline),
+    );
+  }
+  Widget TextToSpeech(String label) {
+    return SwitchListTile(
+      title: Text(label),
+      value: popups,
+      onChanged: (bool value) {
+        var _aux = TextToSpeechAPI();
+        _aux.synthesizeText("Hola esto es una prueba y va a funcionar");
         //print(value);
       },
       secondary: const Icon(Icons.lightbulb_outline),

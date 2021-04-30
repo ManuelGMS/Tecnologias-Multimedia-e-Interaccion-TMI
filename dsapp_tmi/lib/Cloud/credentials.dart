@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:googleapis/vision/v1.dart';
 import 'package:googleapis_auth/auth_io.dart';
+import 'package:googleapis/texttospeech/v1.dart';
 import 'package:gcloud/storage.dart';
 
 /**
@@ -20,6 +21,12 @@ class CredentialsProvider {
     return ServiceAccountCredentials.fromJson(_filestorage);
   }
 
+  Future<ServiceAccountCredentials> get _credentialstextspeech async {
+    String _fileSpeech =
+    await rootBundle.loadString('assets/spach.json');
+    return ServiceAccountCredentials.fromJson(_fileSpeech);
+  }
+
   Future<AutoRefreshingAuthClient> get clientvision async {
     AutoRefreshingAuthClient _client = await clientViaServiceAccount(
         await _credentialsvision, [VisionApi.CloudVisionScope]).then((c) => c);
@@ -32,4 +39,11 @@ class CredentialsProvider {
             .then((c) => c);
     return _client;
   }
+
+  Future<AutoRefreshingAuthClient> get clientTextSpeech async {
+    AutoRefreshingAuthClient _client = await clientViaServiceAccount(
+        await _credentialstextspeech,[TexttospeechApi.CloudPlatformScope] ).then((c) => c);
+    return _client;
+  }
+
 }
