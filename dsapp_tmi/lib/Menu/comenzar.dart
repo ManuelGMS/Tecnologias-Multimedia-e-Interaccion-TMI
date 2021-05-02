@@ -20,6 +20,7 @@ class _MyComenzar extends State<MyComenzar> {
   // Lista de elementos reconocidos en el frame de vídeo.
   List<dynamic> _recognitions;
   CameraImage _frame;
+  String _OCRtext; // aqui estan las valiosas palabras
   CloudOCR apiOcr;
 
   @override
@@ -90,6 +91,22 @@ class _MyComenzar extends State<MyComenzar> {
                     onPressed: () async {
                       print("pulsaoo");
                       // Para procesar la dichosa fotito
+                      String b52 = apiOcr.makeBase64(_frame);
+
+                      print("### conversion");
+                      print(b52);
+
+                      if (b52 != "") {
+                        _OCRtext = await apiOcr.ocr(b52);
+
+                        print("######### Me he levantado, no es un buen dia");
+                        print(_OCRtext);
+                        print("######### Me he levantado, no es un buen dia");
+
+                        // TODO INSERTAR AQUI LO QUE HABLA ALBERTO HASLO COSA FINA FILIPINA
+                      }
+
+                      // Cosas viejas que no antiguas como una fender jaguar de 1964
                       /*String b52 = cam.getBase64;
                       if (b52 != "") {
                         Future<String> response = apiOcr.ocr(b52);
