@@ -11,26 +11,30 @@ como parámetro de alguna función de este módulo).
 */
 typedef void Callback(List<dynamic> list);
 
-CameraImage frameG;
+typedef void CallbackFrame(CameraImage frameOCR);
+
+/*CameraImage frameG;
 
 // OJO que puede ser necesario un getset
 CameraImage get getFrameG => frameG;
 void setFrameG(CameraImage fre) {
   frameG = fre;
-}
+}*/
 
 class Camera extends StatefulWidget {
   // CallBack para dar deedback sobre las capturas y el tamaño de los frames.
   final Callback _recognitionsCB;
+  // CallBack para el frame del OCR.
+  final CallbackFrame _frameOCR;
   // Objeto que representa la cámara de vídeo del sistema.
   final CameraDescription _systemCamera;
-  Camera(this._systemCamera, this._recognitionsCB);
+  Camera(this._systemCamera, this._recognitionsCB, this._frameOCR);
 
   _CameraState camSt;
 
   // String en base64 con el frame acual JODER QUE PUTA BASURA DE LENGUAJE DE MIERDA COÑO COMO SE HACE ESTO
   // Bueno parece que ya lo he hecho pero sigue siendo una puta mierda de mierda de puta mierda
-  String get getBase64 {
+  /*String get getBase64 {
     String b52 = "";
 
     CameraImage frameL;
@@ -53,7 +57,7 @@ class Camera extends StatefulWidget {
     b52 = base64Encode(fotoMenosMal);
 
     return b52;
-  }
+  }*/
 
   @override
   _CameraState createState() {
@@ -102,7 +106,10 @@ class _CameraState extends State<Camera> {
         if (!_ssdMobileNetIsNotWorking) {
           // Actualizar el atributo del frame
           //this.frame = currentFrame; // vestigios
-          frameG = currentFrame;
+          //frameG = currentFrame;
+          this.widget._frameOCR(currentFrame);
+
+          print("Guardado");
           // Indicamos que la red neuronal está analizando y no se admiten frames.
           _ssdMobileNetIsNotWorking = true;
           // Indicamos a TensorFlow que trate de detectar un objeto en la imagen.

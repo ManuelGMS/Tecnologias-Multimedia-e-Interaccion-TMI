@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:dsapptmi/ObjDetection/camara.dart';
 import 'package:dsapptmi/ObjDetection/boundingBox.dart';
 import 'package:dsapptmi/OCR/rekognize.dart';
+import 'package:image/image.dart' as imgLib;
+import 'dart:convert';
 
 class MyComenzar extends StatefulWidget {
   // Cámara de video.
@@ -17,6 +19,7 @@ class MyComenzar extends StatefulWidget {
 class _MyComenzar extends State<MyComenzar> {
   // Lista de elementos reconocidos en el frame de vídeo.
   List<dynamic> _recognitions;
+  CameraImage _frame;
   CloudOCR apiOcr;
 
   @override
@@ -48,6 +51,14 @@ class _MyComenzar extends State<MyComenzar> {
     });
   }
 
+  // Método dedicado a oscar y aiko los mejores joder. Sirve para guardar el frame
+  // del OCR
+  _frameOCR(CameraImage oscar) {
+    setState(() {
+      this._frame = oscar;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     /* Pasamos un CallBack a la cámara para que podamos recuperar a
@@ -67,23 +78,26 @@ class _MyComenzar extends State<MyComenzar> {
             children: [
               // Muestra lo que devuelve su método "build" (el vídeo grabado).
               // Obtiene la cámara a través del widget asociado este estado.
-              cam = Camera(this.widget._systemCamera, _recognitionsCB),
+              cam =
+                  Camera(this.widget._systemCamera, _recognitionsCB, _frameOCR),
               Align(
                 alignment: Alignment.bottomCenter,
                 child: FloatingActionButton(
                     child:
                         Icon(Icons.chrome_reader_mode), // Buscar un icono mejor
                     tooltip: 'OCR',
-                    // hay que modificar la camarapara que haga fotos
+                    // hay que modificar la camara para que haga fotos
                     onPressed: () async {
                       print("pulsaoo");
                       // Para procesar la dichosa fotito
-                      String b52 = cam.getBase64;
+                      /*String b52 = cam.getBase64;
                       if (b52 != "") {
                         Future<String> response = apiOcr.ocr(b52);
                         print("OSCARRRRRRRRRRRRRRRRRRRR");
                         //print(response);
-                      }
+
+                        // TODO INSERTAR AQUI LO QUE HABLA
+                      }*/
                     }),
               ),
 
