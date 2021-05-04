@@ -1,9 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:tflite/tflite.dart';
 import 'package:flutter/material.dart';
-import 'package:dsapptmi/OCR/processImage.dart';
-import 'package:image/image.dart' as imgLib;
-import 'dart:convert';
 
 /*
 Definimos un CallBack (una función que puede ser recibida
@@ -12,14 +9,6 @@ como parámetro de alguna función de este módulo).
 typedef void Callback(List<dynamic> list);
 
 typedef void CallbackFrame(CameraImage frameOCR);
-
-/*CameraImage frameG;
-
-// OJO que puede ser necesario un getset
-CameraImage get getFrameG => frameG;
-void setFrameG(CameraImage fre) {
-  frameG = fre;
-}*/
 
 class Camera extends StatefulWidget {
   // CallBack para dar deedback sobre las capturas y el tamaño de los frames.
@@ -32,39 +21,11 @@ class Camera extends StatefulWidget {
 
   _CameraState camSt;
 
-  // String en base64 con el frame acual JODER QUE PUTA BASURA DE LENGUAJE DE MIERDA COÑO COMO SE HACE ESTO
-  // Bueno parece que ya lo he hecho pero sigue siendo una puta mierda de mierda de puta mierda
-  /*String get getBase64 {
-    String b52 = "";
-
-    CameraImage frameL;
-
-    if (camSt == null) {
-      print("ERROR CON EL camSt pero no pasa nada, enrique genio 2 dias");
-      frameL = camSt.frame;
-    } else {
-      frameL = frameG;
-    }
-
-    // Redimensionar la imagen porque google tambien es una mierda
-    imgLib.Image fotoPequenia = convertYUV420(frameL);
-    imgLib.copyResize(fotoPequenia, width: 300);
-
-    // Fluter es una mierda y hace las fotos mal
-    List<int> fotoMenosMal = convertImagetoPng(fotoPequenia);
-
-    // Pasar a base 64... tanto alto nivel y tanta mierda pa nada
-    b52 = base64Encode(fotoMenosMal);
-
-    return b52;
-  }*/
-
   @override
   _CameraState createState() {
     camSt = new _CameraState();
     return camSt;
   }
-  //_CameraState createState() => new _CameraState();
 }
 
 class _CameraState extends State<Camera> {
@@ -72,7 +33,7 @@ class _CameraState extends State<Camera> {
   CameraController cameraController;
 
   CameraImage frame;
-  //frame.toString();
+
   CameraImage get getFrame => this.frame;
 
   // Booleano para controlar si actualmente hemos detectado algo en el vídeo.
@@ -105,8 +66,6 @@ class _CameraState extends State<Camera> {
         */
         if (!_ssdMobileNetIsNotWorking) {
           // Actualizar el atributo del frame
-          //this.frame = currentFrame; // vestigios
-          //frameG = currentFrame;
           this.widget._frameOCR(currentFrame);
 
           print("Guardado");
