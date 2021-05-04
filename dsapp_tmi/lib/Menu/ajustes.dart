@@ -67,8 +67,9 @@ class _MyAjustes extends State<MyAjustes> {
       title: Text(label),
       value: popups,
       onChanged: (bool value) {
-        var _aux = TextToSpeechAPI();
-        _aux.synthesizeText("Hola esto es una prueba y va a funcionar");
+        var _aux = TextToSpeechService();
+        String texto = "Hola buenas tardes";
+        _aux.textToSpeech(text:texto);
         //print(value);
       },
       secondary: const Icon(Icons.lightbulb_outline),
