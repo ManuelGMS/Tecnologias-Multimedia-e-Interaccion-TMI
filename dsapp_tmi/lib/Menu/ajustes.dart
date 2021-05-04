@@ -1,4 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+bool vibracion;
+bool popups;
+double currentSliderValue = 20;
+
+/*
+Future<void> inicializaAjustes() async {
+
+  vibracion = false;
+  popups = false;
+  currentSliderValue = 20;
+  final prefs = await SharedPreferences.getInstance();
+
+  vibracion = prefs.getBool('my_vibracion_key') ?? false;
+  popups = prefs.getBool('my_popups_key') ?? false;
+  currentSliderValue = prefs.getDouble('my_slider_key') ?? 20.0;
+}
+*/
 
 class MyAjustes extends StatefulWidget {
   MyAjustes({Key key, this.title}) : super(key: key);
@@ -10,9 +29,6 @@ class MyAjustes extends StatefulWidget {
 }
 
 class _MyAjustes extends State<MyAjustes> {
-  bool vibracion = false;
-  bool popups = false;
-  double currentSliderValue = 20;
 
   @override
   Widget build(BuildContext context) {
@@ -34,44 +50,88 @@ class _MyAjustes extends State<MyAjustes> {
   }
 
   Widget _switchVibracion(String label) {
-    return SwitchListTile(
-      title: Text(label),
-      value: vibracion,
-      onChanged: (bool value) {
-        setState(() {
-          vibracion = value;
-        });
-        //print(value);
-      },
-      secondary: const Icon(Icons.lightbulb_outline),
+    return FutureBuilder(
+        future: getSwitch('my_vibracion_key'),
+        initialData: false,
+        builder: (context, snapshot) {
+          return SwitchListTile(
+            title: Text(label),
+            value:  snapshot.data,
+            onChanged: (bool value) {
+              setState(() {
+                setSwitch('my_vibracion_key', value);
+              });
+              //print(value);
+            },
+            secondary: const Icon(Icons.lightbulb_outline),
+          );
+        }
     );
   }
 
   Widget _switchPopups(String label) {
-    return SwitchListTile(
-      title: Text(label),
-      value: popups,
-      onChanged: (bool value) {
-        setState(() {
-          popups = value;
-        });
-        //print(value);
-      },
-      secondary: const Icon(Icons.lightbulb_outline),
+    return FutureBuilder(
+        future: getSwitch('my_popups_key'),
+        initialData: false,
+        builder: (context, snapshot) {
+          return SwitchListTile(
+            title: Text(label),
+            value: snapshot.data,
+            onChanged: (bool value) {
+              setState(() {
+                setSwitch('my_popups_key', value);
+              });
+              //print(value);
+            },
+            secondary: const Icon(Icons.lightbulb_outline),
+          );
+        }
     );
   }
 
   Widget _sliderVolumen() {
-    return Slider(
-      value: currentSliderValue,
-      min: 0,
-      max: 50,
-      label: currentSliderValue.round().toString(),
-      onChanged: (double value) {
-        setState(() {
-          currentSliderValue = value;
-        });
-      },
+    return FutureBuilder(
+        future: getSlider('my_slider_key'),
+        initialData: false,
+        builder: (context, snapshot) {
+          return Slider(
+            value: currentSliderValue,
+            min: 0,
+            max: 50,
+            label: currentSliderValue.round().toString(),
+            onChanged: (double value) {
+              setState(() {
+                setSlider('my_slider_key', value);
+              });
+            },
+          );
+        }
     );
   }
+
+  void setSwitch(String key, bool val) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool(key, val);
+  }
+  Future getSwitch(String key) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    //bool val = prefs.getBool(key) == null ? false : (prefs.getBool(key));
+    bool val = prefs.getBool(key) ?? false;
+    return val;
+  }
+
+  void setSlider(String key, double val) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setDouble(key, val);
+  }
+  Future getSlider(String key) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    double val = prefs.getDouble(key) == null ? false : (prefs.getDouble(key));
+    //double val = prefs.getDouble('my_slider_key') ?? 20.0;
+    currentSliderValue = val;
+    return val;
+  }
+
 }

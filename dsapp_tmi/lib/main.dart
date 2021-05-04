@@ -3,6 +3,7 @@ import 'Menu/tutorial.dart';
 import 'Menu/comenzar.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 // **************************************************************************************************
 // **************************************************************************************************
@@ -30,6 +31,7 @@ main() async {
     print('Error: $e.message');
   }
   // Cargamos la aplicación.
+  //inicializaAjustes();
   runApp(new MyApp());
 }
 
@@ -40,6 +42,10 @@ main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'DSAPP',
