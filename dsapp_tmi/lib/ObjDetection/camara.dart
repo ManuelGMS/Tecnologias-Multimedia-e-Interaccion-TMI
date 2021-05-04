@@ -131,6 +131,7 @@ class _CameraState extends State<Camera> {
             Invocamos a la función CallBack para devolver una lista con las
             imágenes detectadas y el tamaño de todo el frame capturado.
             */
+
             this.widget._recognitionsCB(recognitions);
           });
         }
