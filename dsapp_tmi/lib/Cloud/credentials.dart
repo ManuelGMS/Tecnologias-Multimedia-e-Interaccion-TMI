@@ -1,8 +1,10 @@
-import 'package:flutter/services.dart';
+import 'dart:convert';
+
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:googleapis/vision/v1.dart';
 import 'package:googleapis_auth/auth_io.dart';
 import 'package:googleapis/texttospeech/v1.dart';
-import 'package:gcloud/storage.dart';
+import 'package:gcloud/storage.dart' ;
 
 /**
  * Clase para obtener los creedenciales de acceso a la APIcan los mosquitos
@@ -46,4 +48,10 @@ class CredentialsProvider {
     return _client;
   }
 
+  Future<String> ttsgetJson() async{
+    final String string = await rootBundle.loadString('assets/spach.json');
+    final ttsJson = await json.decode(string);
+
+    return ttsJson["apikey"];
+  }
 }

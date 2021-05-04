@@ -6,7 +6,6 @@ import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:audioplayer/audioplayer.dart';
 import 'audioResponse.dart';
-import 'fileService.dart';
 
 const BASE_URL = 'https://texttospeech.googleapis.com/v1beta1/';
 
@@ -106,18 +105,9 @@ const BASE_URL = 'https://texttospeech.googleapis.com/v1beta1/';
 // }
 
 class TextToSpeechService {
-  String _apiKey = '6a22605c586c86311f26c9d04f8476641ca422cb';
+  String _apiKey;
 
   TextToSpeechService([this._apiKey]);
-
-  Future<File> _createMp3File(AudioResponse response) async {
-    String id = new DateTime.now().millisecondsSinceEpoch.toString();
-    String fileName = '$id.mp3';
-
-    // Decode audio content to binary format and create mp3 file
-    var bytes = base64.decode(response.audioContent);
-    return FileService.createAndWriteFile(fileName, bytes);
-  }
 
   Future _playMp3File(AudioResponse response) async {
     AudioPlayer audioPlugin = AudioPlayer();
@@ -156,7 +146,7 @@ class TextToSpeechService {
     }
   }
 
-  Future<File> textToSpeech(
+  Future textToSpeech(
       {@required String text,
       String voiceName = 'es-ES-Wavenet-C',
       String audioEncoding = 'MP3',
@@ -173,9 +163,8 @@ class TextToSpeechService {
       var response = await _getResponse(request);
       AudioResponse audioResponse = AudioResponse.fromJson(response);
       _playMp3File(audioResponse);
-      return _createMp3File(audioResponse);
     } catch (e) {
-      throw (e);
+      print("No se ha podido reproducir el audio");
     }
   }
 }
