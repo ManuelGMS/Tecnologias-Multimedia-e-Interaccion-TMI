@@ -8,21 +8,34 @@ como parámetro de alguna función de este módulo).
 */
 typedef void Callback(List<dynamic> list);
 
+typedef void CallbackFrame(CameraImage frameOCR);
+
 class Camera extends StatefulWidget {
   // CallBack para dar deedback sobre las capturas y el tamaño de los frames.
   final Callback _recognitionsCB;
+  // CallBack para el frame del OCR.
+  final CallbackFrame _frameOCR;
   // Objeto que representa la cámara de vídeo del sistema.
   final CameraDescription _systemCamera;
-  Camera(this._systemCamera, this._recognitionsCB);
-  @override
-  _CameraState createState() => new _CameraState();
+  Camera(this._systemCamera, this._recognitionsCB, this._frameOCR);
 
-  // Aqui hay que meter una funcion que haga una foto y devuelva un base 64
+  _CameraState camSt;
+
+  @override
+  _CameraState createState() {
+    camSt = new _CameraState();
+    return camSt;
+  }
 }
 
 class _CameraState extends State<Camera> {
   // Objeto para controlar la cámara del sistema.
   CameraController cameraController;
+
+  CameraImage frame;
+
+  CameraImage get getFrame => this.frame;
+
   // Booleano para controlar si actualmente hemos detectado algo en el vídeo.
   bool _ssdMobileNetIsNotWorking = false;
 
@@ -37,7 +50,7 @@ class _CameraState extends State<Camera> {
     // Instanciamos un objeto para controlar la cámara de vídeo.
     this.cameraController = new CameraController(
       this.widget._systemCamera,
-      ResolutionPreset.high,
+      ResolutionPreset.medium,
     );
 
     // Inicializa la cámara de vídeo y permite indicar a esta que debe de hacer.
@@ -52,6 +65,10 @@ class _CameraState extends State<Camera> {
         analizar el frame de vídeo actual.
         */
         if (!_ssdMobileNetIsNotWorking) {
+          // Actualizar el atributo del frame
+          this.widget._frameOCR(currentFrame);
+
+          print("Guardado");
           // Indicamos que la red neuronal está analizando y no se admiten frames.
           _ssdMobileNetIsNotWorking = true;
           // Indicamos a TensorFlow que trate de detectar un objeto en la imagen.
