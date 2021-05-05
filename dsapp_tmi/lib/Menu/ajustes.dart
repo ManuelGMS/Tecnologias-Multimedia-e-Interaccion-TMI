@@ -29,7 +29,6 @@ class MyAjustes extends StatefulWidget {
 }
 
 class _MyAjustes extends State<MyAjustes> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +55,7 @@ class _MyAjustes extends State<MyAjustes> {
         builder: (context, snapshot) {
           return SwitchListTile(
             title: Text(label),
-            value:  snapshot.data,
+            value: snapshot.data,
             onChanged: (bool value) {
               setState(() {
                 setSwitch('my_vibracion_key', value);
@@ -65,8 +64,7 @@ class _MyAjustes extends State<MyAjustes> {
             },
             secondary: const Icon(Icons.lightbulb_outline),
           );
-        }
-    );
+        });
   }
 
   Widget _switchPopups(String label) {
@@ -85,8 +83,7 @@ class _MyAjustes extends State<MyAjustes> {
             },
             secondary: const Icon(Icons.lightbulb_outline),
           );
-        }
-    );
+        });
   }
 
   Widget _sliderVolumen() {
@@ -105,14 +102,14 @@ class _MyAjustes extends State<MyAjustes> {
               });
             },
           );
-        }
-    );
+        });
   }
 
   void setSwitch(String key, bool val) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool(key, val);
   }
+
   Future getSwitch(String key) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -125,13 +122,13 @@ class _MyAjustes extends State<MyAjustes> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setDouble(key, val);
   }
+
   Future getSlider(String key) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    double val = prefs.getDouble(key) == null ? false : (prefs.getDouble(key));
-    //double val = prefs.getDouble('my_slider_key') ?? 20.0;
+    //double val = prefs.getDouble(key) == null ? false : (prefs.getDouble(key));
+    double val = prefs.getDouble('my_slider_key') ?? 20.0;
     currentSliderValue = val;
     return val;
   }
-
 }
