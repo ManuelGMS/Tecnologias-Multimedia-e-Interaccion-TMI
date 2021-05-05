@@ -2,7 +2,7 @@
 
 Un registro cronológico que contiene una lista que permite ver a colaboradores y usuarios los cambios más destacables que se han producido en cada versión de este proyecto.
 
-# Los principios del fichero Changelog
+# Los principios del Changelog
 
   * Crear una entrada por cada versión del producto software.
 
@@ -31,6 +31,18 @@ Un registro cronológico que contiene una lista que permite ver a colaboradores 
   * Security: vuelnerabilidades detectadas.
 
 # DSApp Changelog
+
+## [Unreleased] - ??/05/2021
+
+### Added
+### Changed
+### Fixed
+
+## [1.0] - ??/05/2021
+
+### Added
+### Changed
+### Fixed
 
 # Referencias
 
