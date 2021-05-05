@@ -47,6 +47,7 @@ Un registro cronológico que contiene una lista que permite ver a colaboradores 
  - Reconocimiento de texto en imágenes (OCR), por [@dr-frankenfurter](https://github.com/dr-frankenfurter).
  
 ### Fixed
+ - Arreglado el bug del widget slider en el menú de ajustes.
  - El vídeo se reescala incorrectamente al pasar al modo apaisado.
  - Un recurso se destruye/libera incorrectamente al cerrar la grabación con la cámara de vídeo.
 
