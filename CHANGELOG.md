@@ -32,24 +32,35 @@ Un registro cronológico que contiene una lista que permite ver a colaboradores 
 
 # DSApp Changelog
 
-## [Unreleased] - ??/05/2021
+## [0.2.1] - 6/05/2021
+
+### Fixed
+ - Arreglado el bug del widget slider en el menú de ajustes.
+
+## [0.2] - 4/05/2021
 
 ### Added
- - Tecnología para pasar de texto a voz (TTS), por [@alberc01](https://github.com/alberc01).
+ - Reconocimiento de texto en imágenes (OCR), por [@dr-frankenfurter](https://github.com/dr-frankenfurter).
+ - Mecanismo de tratamiento y compresión de imágenes, por [@dr-frankenfurter](https://github.com/dr-frankenfurter).
 
-## [1.0] - ??/05/2021
+### Fixed
+ - El vídeo se reescala incorrectamente al pasar al modo apaisado.
+ 
+## [0.1] - 27/04/2021
 
 ### Added
  - Estructura de la aplicación, por [@enriquemaestro](https://github.com/enriquemaestro).
  - Accesibilidad de la aplicación para personas invidentes, por [@enriquemaestro](https://github.com/enriquemaestro).
  - Funcionamiento de la cámara de vídeo, por [@ManuelGMS](https://github.com/ManuelGMS).
  - Reconocimiento de objetos con TensorFlow Lite (MobileNet), por [@ManuelGMS](https://github.com/ManuelGMS).
- - Reconocimiento de texto en imágenes (OCR), por [@dr-frankenfurter](https://github.com/dr-frankenfurter).
- 
-### Fixed
- - Arreglado el bug del widget slider en el menú de ajustes.
- - El vídeo se reescala incorrectamente al pasar al modo apaisado.
- - Un recurso se destruye/libera incorrectamente al cerrar la grabación con la cámara de vídeo.
+
+# Futuro
+## [Unreleased] - ??/05/2021
+## [1.0] - ??/05/2021
+## [0.3] - algundia/05/2021
+
+### Added
+ - Tecnología para pasar de texto a voz (TTS), por [@alberc01](https://github.com/alberc01).
 
 # Referencias
 
