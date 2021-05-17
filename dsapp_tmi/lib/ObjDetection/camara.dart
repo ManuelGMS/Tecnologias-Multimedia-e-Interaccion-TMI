@@ -13,11 +13,13 @@ typedef void CallbackFrame(CameraImage frameOCR);
 class Camera extends StatefulWidget {
   // CallBack para dar deedback sobre las capturas y el tamaño de los frames.
   final Callback _recognitionsCB;
+  // CallBack para el TTS
+  final Callback _recogttsCB;
   // CallBack para el frame del OCR.
   final CallbackFrame _frameOCR;
   // Objeto que representa la cámara de vídeo del sistema.
   final CameraDescription _systemCamera;
-  Camera(this._systemCamera, this._recognitionsCB, this._frameOCR);
+  Camera(this._systemCamera, this._recognitionsCB, this._frameOCR, this._recogttsCB);
 
   _CameraState camSt;
 
@@ -92,6 +94,7 @@ class _CameraState extends State<Camera> {
             */
 
             this.widget._recognitionsCB(recognitions);
+            this.widget._recogttsCB(recognitions); // Se llama al CallBack de TTS para que suenen las palabras reconocidas
           });
         }
       });

@@ -12,6 +12,7 @@ class BoundingBox extends StatelessWidget {
     Mapeamos cada elemento "re" de los objetos que han sido reconocidos 
     ("_recognitions") por una función anónima que calculará cada Bounding Box.
     */
+
     return _recognitions.map((re) {
       // Positioned es un elemento que permite indicar donde se ubica su hijo.
       return (re["detectedClass"] != "???")

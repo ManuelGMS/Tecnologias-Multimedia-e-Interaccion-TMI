@@ -1,4 +1,6 @@
 import 'package:camera/camera.dart';
+import 'package:dsapptmi/APIK/spach.dart';
+import 'package:dsapptmi/TextToSpeech/textSpeecher.dart';
 import 'package:tflite/tflite.dart';
 import 'package:flutter/material.dart';
 import 'package:dsapptmi/ObjDetection/camara.dart';
@@ -51,6 +53,17 @@ class _MyComenzar extends State<MyComenzar> {
       this._recognitions = recognitions;
     });
   }
+  // TTS Para el ImageRecognition
+  _recogttsCB(List<dynamic> recognitions) {
+    setState(() {
+      // Se comprueba que el mapa que le llega tenga alguna imagen reconocida
+      if(recognitions[0].containsKey("detectedClass")){
+        var ttsService =  TextToSpeechService(Spach.ttsAPIKEY);
+        String texto = recognitions[0]["detectedClass"];// Se saca el valor de la palabra
+        ttsService.textToSpeech(text:texto); // Se llama a la api
+      }
+    });
+  }
 
   // Método dedicado a oscar y aiko los mejores joder. Sirve para guardar el frame
   // del OCR
@@ -86,8 +99,7 @@ class _MyComenzar extends State<MyComenzar> {
             children: [
               // Muestra lo que devuelve su método "build" (el vídeo grabado).
               // Obtiene la cámara a través del widget asociado este estado.
-              cam =
-                  Camera(this.widget._systemCamera, _recognitionsCB, _frameOCR),
+              cam = Camera(this.widget._systemCamera, _recognitionsCB, _frameOCR, _recogttsCB),
               if (loading)
                 Center(
                   child: CircularProgressIndicator(),
@@ -157,9 +169,10 @@ class _MyComenzar extends State<MyComenzar> {
 
     if (b52 != "") {
       _OCRtext = await apiOcr.ocr(b52);
+      var ttsService =  TextToSpeechService(Spach.ttsAPIKEY); // Se llama al TTS para que se diga el texto
+      ttsService.textToSpeech(text:_OCRtext);
 
       print(_OCRtext);
-
       setState(() {
         loading = false;
         isUploaded = true;
