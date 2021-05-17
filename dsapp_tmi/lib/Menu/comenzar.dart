@@ -56,7 +56,7 @@ class _MyComenzar extends State<MyComenzar> {
   // TTS Para el ImageRecognition
   _recogttsCB(List<dynamic> recognitions) {
     setState(() {
-      // Se comprueba que el mapa que le llega tenga alguna imagen reconocida
+      // Se comprueba que el mapa contenga alguna imagen reconocida.
       if(recognitions[0].containsKey("detectedClass")){
         var ttsService =  TextToSpeechService(Spach.ttsAPIKEY); // Obtiene el servicio para el TTS
         String texto = recognitions[0]["detectedClass"]; // Obtenemos el valor de la palabra
