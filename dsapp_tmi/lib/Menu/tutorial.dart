@@ -23,13 +23,13 @@ class _MyTutorial extends State<MyTutorial> {
                 '1. Instrucciones generales: Es necesario conexión a internet para el funcionamiento de la aplicación.\n',
                 style: TextStyle(fontSize: 17)),
             Text(
-                '2. Comenzar: Para empezar a usar la aplicacion, activara la cámara para detectara los semáforos. En la parte inferior derecha de la ventana hay un boton para realizar una foto, si en dicha foto se reconoce un texto, este se mostrara por pantalla y audio.\n',
+                '2. Comenzar: Para empezar a usar la aplicación, activara la cámara para detectara los semáforos. En la parte inferior de la ventana hay un boton para realizar una foto, si en dicha foto se reconoce un texto, este se mostrara por pantalla y audio.\n',
                 style: TextStyle(fontSize: 17)),
             Text(
-                '3. Tutorial: Explicacion de uso y de los botones de la aplicación.\n',
+                '3. Tutorial: Explicación de uso y de los botones de la aplicación.\n',
                 style: TextStyle(fontSize: 17)),
             Text(
-                '4. Ajustes: En la ventana ajustes se compone de dos botones para activar o desactivar la vibracion y los Pop-Ups, respectivamente. Y de un control deslizante para ajustar el volumen de la aplicación.\n',
+                '4. Ajustes: En la ventana ajustes se compone de dos botones para activar o desactivar la vibración y los Pop-Ups, respectivamente. Y de un control deslizante para ajustar el volumen de la aplicación.\n',
                 style: TextStyle(fontSize: 17)),
           ]),
         ));
