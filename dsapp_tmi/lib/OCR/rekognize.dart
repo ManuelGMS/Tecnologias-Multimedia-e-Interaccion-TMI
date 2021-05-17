@@ -25,7 +25,7 @@ class CloudOCR {
   }
 
   // La imagen debe estar en base 64
-  Future<String> /*Future<WebLabel>*/ ocr(String image) async {
+  Future<String> ocr(String image) async {
     var _vision = VisionApi(await _client);
     var _api = _vision.images;
     var _response = await _api.annotate(BatchAnnotateImagesRequest.fromJson({
