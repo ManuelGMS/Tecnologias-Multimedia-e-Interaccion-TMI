@@ -3,6 +3,7 @@
 import 'package:image/image.dart' as imglib;
 import 'package:camera/camera.dart';
 
+// Convierte la imagen obtenida de una captura a formato png
 Future<List<int>> convertCameraImagetoPng(CameraImage image) async {
   try {
     imglib.Image img;
