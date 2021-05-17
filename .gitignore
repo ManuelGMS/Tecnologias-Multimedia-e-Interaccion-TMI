@@ -1,1 +1,6 @@
 .DS_Store
+**/credentials.json
+**/maenstorage.json
+**/maenvision.json
+**/spach.json
+**/spach.dart
