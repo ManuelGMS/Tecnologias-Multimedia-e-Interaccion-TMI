@@ -5,20 +5,6 @@ bool vibracion;
 bool popups;
 double currentSliderValue = 20;
 
-/*
-Future<void> inicializaAjustes() async {
-
-  vibracion = false;
-  popups = false;
-  currentSliderValue = 20;
-  final prefs = await SharedPreferences.getInstance();
-
-  vibracion = prefs.getBool('my_vibracion_key') ?? false;
-  popups = prefs.getBool('my_popups_key') ?? false;
-  currentSliderValue = prefs.getDouble('my_slider_key') ?? 20.0;
-}
-*/
-
 class MyAjustes extends StatefulWidget {
   MyAjustes({Key key, this.title}) : super(key: key);
 
