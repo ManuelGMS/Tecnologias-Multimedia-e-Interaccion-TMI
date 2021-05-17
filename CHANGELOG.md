@@ -32,11 +32,11 @@ Un registro cronológico que contiene una lista que permite ver a colaboradores 
 
 # DSApp Changelog
 
-## [1.0] - 12/05/2021
+## [1.0] - 17/05/2021
 
 ### Added
  - Tecnología para pasar de texto a voz (TTS), por [@alberc01](https://github.com/alberc01).
- - Traducción de las categorías de la red neuronal, por [@alberc01](https://github.com/alberc01), [@enriquemaestro](https://github.com/enriquemaestro), [@dr-frankenfurter](https://github.com/dr-frankenfurter), [@ManuelGMS](https://github.com/ManuelGMS).
+ - Traducción de las categorías de la red neuronal, por **DsApp Team**.
 
 ## [0.2.1] - 6/05/2021
 
