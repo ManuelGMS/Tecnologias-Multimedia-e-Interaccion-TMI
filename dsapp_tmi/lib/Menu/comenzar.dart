@@ -20,10 +20,10 @@ class _MyComenzar extends State<MyComenzar> {
   // Lista de elementos reconocidos en el frame de vídeo.
   List<dynamic> _recognitions;
   CameraImage _frame;
-  String _OCRtext; // aqui estan las valiosas palabras
-  CloudOCR apiOcr;
-  bool isUploaded = false;
-  bool loading = false;
+  String _OCRtext; // Palabras para el OCR
+  CloudOCR apiOcr; // Api para el OCR
+  bool isUploaded = false; // Variable para controlar el estado del OCR
+  bool loading = false; // Variable para controlar el estado del OCR
 
   @override
   void initState() {
@@ -33,7 +33,7 @@ class _MyComenzar extends State<MyComenzar> {
     */
     super.initState();
 
-    // Arranca la conexion con el gogle on the line de la nube
+    // Arranca la conexion con Google para la feature de OCR.
     apiOcr = CloudOCR();
 
     // Carga el modelo de red neuronal y las etiquetas de cada clase.
@@ -42,7 +42,7 @@ class _MyComenzar extends State<MyComenzar> {
         labels: "assets/ssd_mobilenet.txt");
   }
 
-  // Método para actualizar la pantalla y los datos asociados a los objetos reconocidos.
+  // Método para actualizar la pantalla y los objetos reconocidos.
   _recognitionsCB(List<dynamic> recognitions) {
     /*
     La llamada a setState le dice al framework Flutter que algo ha cambiado en
@@ -56,11 +56,11 @@ class _MyComenzar extends State<MyComenzar> {
   // TTS Para el ImageRecognition
   _recogttsCB(List<dynamic> recognitions) {
     setState(() {
-      // Se comprueba que el mapa que le llega tenga alguna imagen reconocida
+      // Se comprueba que el mapa contenga alguna imagen reconocida.
       if(recognitions[0].containsKey("detectedClass")){
-        var ttsService =  TextToSpeechService(Spach.ttsAPIKEY);
-        String texto = recognitions[0]["detectedClass"];// Se saca el valor de la palabra
-        ttsService.textToSpeech(text:texto); // Se llama a la api
+        var ttsService =  TextToSpeechService(Spach.ttsAPIKEY); // Se arranca el servicio de TTS.
+        String texto = recognitions[0]["detectedClass"];// Se saca el valor de la palabra.
+        ttsService.textToSpeech(text:texto); // Se llama a la API.
       }
     });
   }
