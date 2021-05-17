@@ -11,14 +11,14 @@ class CloudOCR {
   String makeBase64(CameraImage frame) {
     String b52 = "";
 
-    // Redimensionar la imagen porque google tambien es una mierda
+    // Redimensiona la imagen
     imgLib.Image fotoPequenia = convertYUV420(frame);
     imgLib.copyResize(fotoPequenia, width: 300);
 
-    // Fluter es una mierda y hace las fotos mal
+    // Conversion de imagen a png
     List<int> fotoMenosMal = convertImagetoPng(fotoPequenia);
 
-    // Pasar a base 64... tanto alto nivel y tanta mierda pa nada
+    // Pasar a base 64
     b52 = base64Encode(fotoMenosMal);
 
     return b52;
@@ -34,7 +34,7 @@ class CloudOCR {
           "image": {
             "content":
                 image /* "source": {"imageUri": "uri de la imagen subida al server"}*/
-          }, // El comentario es para hacerlo con imagenes subidas
+          },
           "features": [
             {"type": "TEXT_DETECTION"}
           ]
@@ -42,18 +42,8 @@ class CloudOCR {
       ]
     }));
 
-    /*
-    WebLabel _bestGuessLabel;
-    _response.responses.forEach((data) {
-      var _label = data.webDetection.bestGuessLabels;
-      _bestGuessLabel = _label.single;
-    });
-
-    return _bestGuessLabel;*/
-
     String ret;
     ret = _response.responses.first.textAnnotations.first.description;
-
     return ret;
   }
 }
