@@ -146,7 +146,9 @@ class _MyComenzar extends State<MyComenzar> {
 
     if (b52 != "") {
       _OCRtext = await apiOcr.ocr(b52);
-      var ttsService =  TextToSpeechService(Spach.ttsAPIKEY); // Se llama al TTS para que se diga el texto
+      // Se llama al TTS para que se reproduzca el texto
+      var ttsService =  TextToSpeechService(Spach.ttsAPIKEY);
+      // Se ordena al servicio la reproduccion del texto obtenido del OCR
       ttsService.textToSpeech(text:_OCRtext);
 
       print(_OCRtext);
