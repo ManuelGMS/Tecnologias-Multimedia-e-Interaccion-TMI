@@ -32,6 +32,12 @@ Un registro cronológico que contiene una lista que permite ver a colaboradores 
 
 # DSApp Changelog
 
+## [1.0] - 12/05/2021
+
+### Added
+ - Tecnología para pasar de texto a voz (TTS), por [@alberc01](https://github.com/alberc01).
+ - Traducción de las categorías de la red neuronal, por [@alberc01](https://github.com/alberc01), [@enriquemaestro](https://github.com/enriquemaestro), [@dr-frankenfurter](https://github.com/dr-frankenfurter), [@ManuelGMS](https://github.com/ManuelGMS).
+
 ## [0.2.1] - 6/05/2021
 
 ### Fixed
@@ -53,14 +59,6 @@ Un registro cronológico que contiene una lista que permite ver a colaboradores 
  - Accesibilidad de la aplicación para personas invidentes, por [@enriquemaestro](https://github.com/enriquemaestro).
  - Funcionamiento de la cámara de vídeo, por [@ManuelGMS](https://github.com/ManuelGMS).
  - Reconocimiento de objetos con TensorFlow Lite (MobileNet), por [@ManuelGMS](https://github.com/ManuelGMS).
-
-# Futuro
-## [Unreleased] - ??/05/2021
-## [1.0] - ??/05/2021
-## [0.3] - algundia/05/2021
-
-### Added
- - Tecnología para pasar de texto a voz (TTS), por [@alberc01](https://github.com/alberc01).
 
 # Referencias
 
