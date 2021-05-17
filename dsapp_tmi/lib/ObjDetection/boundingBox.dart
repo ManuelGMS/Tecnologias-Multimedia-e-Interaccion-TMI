@@ -9,7 +9,7 @@ class BoundingBox extends StatelessWidget {
 
   List<Widget> _calculateBoundingBoxes(double screenH, double screenW) {
     /* 
-    Mapeamos cada elemento "re" de los objetos que han sido reconocidos 
+    Mapeamos cada elemento "re" (recogniced) de los objetos que han sido reconocidos
     ("_recognitions") por una función anónima que calculará cada Bounding Box.
     */
 
