@@ -1,9 +1,8 @@
-import 'dart:typed_data';
+// Almacenamiento en la API cloud de google
 
-//import 'package:googleapis_auth/auth_io.dart' as auth;
+import 'dart:typed_data';
 import 'package:gcloud/storage.dart';
 import 'package:mime/mime.dart';
-
 import 'package:dsapptmi/Cloud/credentials.dart';
 
 class CloudStorage {
