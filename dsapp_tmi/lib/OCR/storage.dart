@@ -15,9 +15,10 @@ class CloudStorage {
     var storage = Storage(await _client, 'Image Upload Google Storage');
     var bucket = storage.bucket('tmi-bucket');
 
-    // Trasferencia de contenido al bucket
+    // Trasferencia de contenido al cubo bucket
     final timestamp = DateTime.now().millisecondsSinceEpoch;
     final type = lookupMimeType(name);
+
     return await bucket.writeBytes(name, imgBytes,
         metadata: ObjectMetadata(
           contentType: type,
