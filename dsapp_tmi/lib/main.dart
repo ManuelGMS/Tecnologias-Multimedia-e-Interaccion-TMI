@@ -3,6 +3,7 @@ import 'Menu/tutorial.dart';
 import 'Menu/comenzar.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 // **************************************************************************************************
 // **************************************************************************************************
@@ -18,18 +19,18 @@ main() async {
     /*
     Función de la librería 'cameras', obtiene
     una lista con las cámaras disponibles para
-    su uso. Esta instrucción es asíncrona, por
-    lo que mientras las cámaras se obtinenen se
-    continúa ejecutando, en este caso, cargamos
-    la aplicación 'MyApp'. La cámara [0] es la
-    trasera del móvil, mientras que la [1] es
-    la cámara frontal del móvil.
+    su uso. Esta instruccion obtiene la camara
+    del sistema, esperando que estas esten
+    disponibles. La cámara [0] es la trasera
+    del móvil, mientras que la [1] es la cámara
+    frontal del móvil.
     */
     systemCameras = await availableCameras();
   } on Exception catch (e) {
     print('Error: $e.message');
   }
   // Cargamos la aplicación.
+  //inicializaAjustes();
   runApp(new MyApp());
 }
 
@@ -40,6 +41,10 @@ main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'DSAPP',

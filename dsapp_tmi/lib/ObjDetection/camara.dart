@@ -13,11 +13,13 @@ typedef void CallbackFrame(CameraImage frameOCR);
 class Camera extends StatefulWidget {
   // CallBack para dar deedback sobre las capturas y el tamaño de los frames.
   final Callback _recognitionsCB;
+  // CallBack para el TTS
+  final Callback _recogttsCB;
   // CallBack para el frame del OCR.
   final CallbackFrame _frameOCR;
   // Objeto que representa la cámara de vídeo del sistema.
   final CameraDescription _systemCamera;
-  Camera(this._systemCamera, this._recognitionsCB, this._frameOCR);
+  Camera(this._systemCamera, this._recognitionsCB, this._frameOCR, this._recogttsCB);
 
   _CameraState camSt;
 
@@ -36,7 +38,7 @@ class _CameraState extends State<Camera> {
 
   CameraImage get getFrame => this.frame;
 
-  // Booleano para controlar si actualmente hemos detectado algo en el vídeo.
+  // Booleano para controlar si la red esta clasificando.
   bool _ssdMobileNetIsNotWorking = false;
 
   @override
@@ -68,7 +70,6 @@ class _CameraState extends State<Camera> {
           // Actualizar el atributo del frame
           this.widget._frameOCR(currentFrame);
 
-          print("Guardado");
           // Indicamos que la red neuronal está analizando y no se admiten frames.
           _ssdMobileNetIsNotWorking = true;
           // Indicamos a TensorFlow que trate de detectar un objeto en la imagen.
@@ -90,7 +91,9 @@ class _CameraState extends State<Camera> {
             Invocamos a la función CallBack para devolver una lista con las
             imágenes detectadas y el tamaño de todo el frame capturado.
             */
+
             this.widget._recognitionsCB(recognitions);
+            this.widget._recogttsCB(recognitions); // Se llama al CallBack de TTS para que suenen las palabras reconocidas
           });
         }
       });
