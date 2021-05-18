@@ -22,9 +22,9 @@ class TextToSpeechService {
     // Plugin para reproducir el audio
     AudioPlayer audioPlugin = AudioPlayer();
     // Si se esta reproducioendo el audio, este para para dar paso al nuevo recibido por parametro.
-    if (audioPlugin.state == AudioPlayerState.PLAYING) {
-      await audioPlugin.stop();
-    }
+    // if (audioPlugin.state == AudioPlayerState.PLAYING) {
+    //   await audioPlugin.stop();
+    // }
     // Decodificador en base 64
     final bytes = Base64Decoder()
         .convert(response.audioContent, 0, response.audioContent.length);
