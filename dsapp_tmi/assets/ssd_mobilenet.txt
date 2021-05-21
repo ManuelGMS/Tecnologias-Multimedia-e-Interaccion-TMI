@@ -39,7 +39,7 @@ balón
 cometa
 ???
 ???
-monopatin
+monopatín
 tabla de surf
 raqueta de tenis
 ???
@@ -52,13 +52,13 @@ cuchara
 bol
 banana
 manzana
-sandwich
+sándwich
 naranja
 brócoli
 zanahoria
 perrito caliente
 pizza
-donut
+dónut
 pastel
 silla
 sofá
@@ -71,7 +71,7 @@ mesa de comedor
 retrete
 ???
 televisión
-portatil
+portátil
 ratón
 mando a distancia
 teclado
