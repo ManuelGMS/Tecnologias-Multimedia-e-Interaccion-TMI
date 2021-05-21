@@ -7,30 +7,36 @@ Un registro cronológico que contiene una lista que permite ver a colaboradores 
   * Crear una entrada por cada versión del producto software.
 
   * La última versión del producto deberá de mostrarse primero.
-  
+
   * Mantener una entrada "Unreleased" para exponer los nuevos cambios que se van produciendo en cada nueva versión.
-  
+
   * Mostrar la fecha de la publicación de cada versión.
 
   * Cada versión del producto debe ser enlazable.
 
   * Los cambios que son similares han aparecen agrupados.
-  
+
 # Tipos de cambios
 
   * Added: nuevas funcionalidades que se han añadido.
 
   * Changed: cambios que se han producido en las funcionalidades existentes.
-  
+
   * Deprecated: funcionalidades que dentro de poco tiempo pasarán a eliminarse.
-  
+
   * Removed: funcionalidades que se han eliminado.
-   
+
   * Fixed: errores que se han corregido.
-  
+
   * Security: vuelnerabilidades detectadas.
 
 # DSApp Changelog
+
+## [1.0.1] - 21/05/2021
+
+### Fixed
+ - Arreglado el bug del TTS al activar el OCR.
+ - Arreglados algunos problemas de pronunciación del TTS.
 
 ## [1.0] - 17/05/2021
 
@@ -51,7 +57,7 @@ Un registro cronológico que contiene una lista que permite ver a colaboradores 
 
 ### Fixed
  - El vídeo se reescala incorrectamente al pasar al modo apaisado.
- 
+
 ## [0.1] - 27/04/2021
 
 ### Added
