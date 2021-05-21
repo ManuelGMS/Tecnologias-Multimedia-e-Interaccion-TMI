@@ -57,10 +57,13 @@ class _MyComenzar extends State<MyComenzar> {
   _recogttsCB(List<dynamic> recognitions) {
     setState(() {
       // Se comprueba que el mapa contenga alguna imagen reconocida.
-      if(recognitions[0].containsKey("detectedClass")){
-        var ttsService =  TextToSpeechService(Spach.ttsAPIKEY); // Obtiene el servicio para el TTS
-        String texto = recognitions[0]["detectedClass"]; // Obtenemos el valor de la palabra
-        ttsService.textToSpeech(text:texto); // Llamada a la API
+      if(recognitions.isNotEmpty) {
+        if (recognitions[0].containsKey("detectedClass")) {
+          var ttsService = TextToSpeechService(
+              Spach.ttsAPIKEY); // Obtiene el servicio para el TTS
+          String texto = recognitions[0]["detectedClass"]; // Obtenemos el valor de la palabra
+          ttsService.textToSpeech(text: texto); // Llamada a la API
+        }
       }
     });
   }

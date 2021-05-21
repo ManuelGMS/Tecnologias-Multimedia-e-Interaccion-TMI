@@ -25,17 +25,19 @@ class TextToSpeechService {
     if (audioPlugin.state == AudioPlayerState.PLAYING) {
       await audioPlugin.stop();
     }
-    // Decodificador en base 64
-    final bytes = Base64Decoder()
-        .convert(response.audioContent, 0, response.audioContent.length);
-    // Se obtiene el directorio temporal en el cual se ha guardado el audio
-    final dir = await getTemporaryDirectory();
-    // Se el archivo de audio del directorio temporal
-    final file = File('${dir.path}/wavenet.mp3');
-    // Se escribe en el archivo los bytes del audio
-    await file.writeAsBytes(bytes);
-    // Se reproduce el audio
-    await audioPlugin.play(file.path, isLocal: true);
+    else {
+      // Decodificador en base 64
+      final bytes = Base64Decoder()
+          .convert(response.audioContent, 0, response.audioContent.length);
+      // Se obtiene el directorio temporal en el cual se ha guardado el audio
+      final dir = await getTemporaryDirectory();
+      // Se el archivo de audio del directorio temporal
+      final file = File('${dir.path}/wavenet.mp3');
+      // Se escribe en el archivo los bytes del audio
+      await file.writeAsBytes(bytes);
+      // Se reproduce el audio
+      await audioPlugin.play(file.path, isLocal: true);
+    }
   }
 
   // Se obtiene la URL del servicio de Google.
