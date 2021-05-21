@@ -2,7 +2,7 @@
 Repositorio para la asignatura Tecnologías Multimedia e Interacción.
 
 ### Motivación del proyecto
-La motivación principal para la realización de este proyecto es ofrecer la ayuda necesaria a personas con discapacidad visual, permitiendo obtener información del entorno que les rodea. Para ello, el sistema ofrece una descripción por voz sobre los objetos que recoge la cámara trasera del dispositivo.
+La motivación principal para la realización de este proyecto es ofrecer la ayuda necesaria a personas con discapacidad visual, permitiendo obtener información del entorno que les rodea. Para ello, el sistema ofrece una descripción por voz sobre los objetos que recoge la cámara trasera de su dispositivo móvil.
 
 Además, esta acuciante crisis afecta de forma directa sobre la vida de las personas con discapacidades, ya que al haber un mayor distanciamiento social de forma general, hay más dificultades a la hora encontrar a una persona dispuesta a ayudar. Por otro lado, muchas personas invidentes no disponen de la posibilidad de acceder a un perro guía, uno de los objetivos de este proyecto es suplir esta necesidad mediante el uso de tecnología multimedia.
 
