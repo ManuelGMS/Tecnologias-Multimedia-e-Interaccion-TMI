@@ -1,3 +1,5 @@
+// OCR con la API cloud de google
+
 import 'package:dsapptmi/Cloud/credentials.dart';
 import 'package:googleapis/vision/v1.dart';
 import 'package:dsapptmi/OCR/processImage.dart';
@@ -28,12 +30,15 @@ class CloudOCR {
   Future<String> ocr(String image) async {
     var _vision = VisionApi(await _client);
     var _api = _vision.images;
-    var _response = await _api.annotate(BatchAnnotateImagesRequest.fromJson({
+    var _response = await
+
+    _api.annotate(BatchAnnotateImagesRequest.fromJson({
       "requests": [
         {
           "image": {
             "content":
-                image /* "source": {"imageUri": "uri de la imagen subida al server"}*/
+                image
+                /* "source": {"imageUri": "uri de la imagen subida al server"}*/
           },
           "features": [
             {"type": "TEXT_DETECTION"}
@@ -44,6 +49,7 @@ class CloudOCR {
 
     String ret;
     ret = _response.responses.first.textAnnotations.first.description;
+
     return ret;
   }
 }
